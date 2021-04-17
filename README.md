@@ -1,3 +1,106 @@
+# DOM
+
+## Critical Rendering Path (4 ó 5 steps)
+DOM -> CSSOM -> (JS) -> Render Tree -> Layout -> Paint
+Arboles (estructuras de datos que representan)
+
+Document Object Model (DOM)
+Representación del HTML
+Estructura en forma de nodos (Cada hoja, o arista es un Nodo)
+Modelo que puede ser modificado
+
+
+CSS Object Model (CSSOM)
+
+
+API (PUENTE)
+DOM + Javascript = WebAPI (Existen más de 70 Web APIS)
+DOM es una Web Api que nos permite conectar el HTML con Javascript
+
+### Leer nodos
+```javascript
+document.getElementyById()
+parent.getElementByTagName()
+parent.getElementByClassName()
+
+node.parentElement
+```
+
+más modernos, más flexibles, y mayores beneficios
+```javascript
+querySelector() // (only returns the first element, accept any css selector)
+querySelectorAll() // (return NodeList) (length, forEach) (no map, some, filter, reduce, every) toArray  […nodeList] v8 is optimized to work with arrays (no nodeLists)
+```
+
+### Crear nodos (crear no significa aNadir al dom)
+```javascript
+document.createElement('h1') // elemento
+document.createTextContent('text') // texto
+document.createTextNode('text') // texto
+```
+
+### Agregar nodos (document or parentElement)
+```javascript
+parentElement.appendChild(node) // append to the end
+parentElement.insertBefore(node, reference) // the reference need be direct children of baseNode
+parentElement.insertAdjacentElement(position, node) // (beforebegin, afterbegin, beforeend, afterend)
+```
+
+más moderno:
+```javascript
+parentElement.append(nodes) // (no soportado IE11, puede agregar más de un nodo, puede agregar texto)
+```
+
+### Eliminar Nodo
+```javascript
+parentElement.removeChild()
+document.replaceChild(newNode, nodeToReplace)
+```
+
+```javascript
+document.remove() // (evolución de removeChild, lo hace por debajo) not supported by IE11
+// like:
+node.parentElement.removeChild(node)
+```
+
+### Nodos como strings (security issues XSS -> need be sanitized)
+```javascript
+node.outerHTML // leer como texto
+node.innerHTML // retorna texto actual
+node.innerHTML = newContent // escribir en el
+```
+
+
+## Propiedades
+Son ventana para modificar lo que tiene un elemento en el DOM
+
+Inspector de elementos, seleccionar item y $0 en consola para imprimirlo
+$0.type, .className, .value
+
+Propiedad vs Attribute (cambia de acuerdo al lenguaje de programación)
+HTML:
+Atributos son usados al inicio para inicializar el html
+Las propiedades pueden cambiar en cualquier momento (cuando la página ya está viva - cambiando)
+
+```javascript
+// agregar 100 inputs
+
+// worse performance
+for (let i = 0; i < 100; i++) {
+  const node = document.createElement('input')
+  document.body.appendChild(node)
+}
+
+// Is better less operations modify DOM
+// better performance
+const nodes = [];
+for (let i = 0; i < 100; i++) {
+  const node = document.createElement('input')
+  nodes.push(node)
+}
+document.body.append(…nodes)
+```
+
 # Snowpack Tailwind
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
