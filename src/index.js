@@ -9,6 +9,12 @@ const baseUrl = 'https://platzi-avo.vercel.app';
 
 const appNode = document.querySelector('#app')
 
+// Event Delegation
+appNode.addEventListener('click', (event) => {
+  if (event.target.nodeName === 'H2') window.alert(`Hola: `);
+})
+
+
 // Intl = 1. Format Dates, Format Currencies
 const formatPrice = (price) => {
   const newPrice = window.Intl.NumberFormat('en-EN', {
@@ -34,6 +40,7 @@ window
       // title.style.fontSize = '2rem';
       title.className = 'text-lg';
       title.textContent = item.name;
+      // title.addEventListener('click', () => window.alert('hola'))
 
       const price = document.createElement('span');
       price.className = 'text-gray-600';

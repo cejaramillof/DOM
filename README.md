@@ -101,6 +101,29 @@ for (let i = 0; i < 100; i++) {
 document.body.append(…nodes)
 ```
 
+## Eventos
+Reaccionar a lo que sucede en el DOM
+```javascript
+const action = () => { };
+node.addEventListener('eventInput', action)
+// can create multiples eventListener, for the same EventInput
+node.removeEventListener('eventInput', action) // need the reference to the action to remove it
+```
+
+### Propagación de Eventos
+DOM renderiza Nodos de forma jerarquica, al disparar un evento, será propagado en cada uno de los padres **bubbling** hasta la raiz el document
+```javascript
+event.currentTarget.nodeName // get name of current node
+event.stopPropagation(); // stop Event bubbling
+```
+
+### Delegación de eventos
+Pattern: Events + How to be Propagate in DOM.
+Delegar a un nodo, usualmente padre que se encargue de manejar todos los eventos en esa zona.
+Used by (React, Angular, Svelte)
+
+
+
 # Snowpack Tailwind
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
