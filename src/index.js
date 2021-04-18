@@ -1,19 +1,14 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import { registerImage } from './lazy';
 
 console.log('Happy hacking :)');
 
 const baseUrl = 'https://platzi-avo.vercel.app';
-
 const appNode = document.querySelector('#app')
 
 // Event Delegation
 appNode.addEventListener('click', (event) => {
   if (event.target.nodeName === 'H2') window.alert(`Hola: `);
 })
-
 
 // Intl = 1. Format Dates, Format Currencies
 const formatPrice = (price) => {
@@ -65,6 +60,7 @@ window
 
 
 
+
 // Lazy loading
 const mountNode = document.getElementById('images');
 
@@ -79,7 +75,9 @@ const createImageNode = () => {
   const image = document.createElement('img');
   image.className = "mx-auto";
   image.width = "320";
-  image.src = `https://randomfox.ca/images/${random()}.jpg`;
+
+  // dataset to comunicate info between html and js
+  image.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
 
   container.appendChild(image);
   return container;
@@ -88,6 +86,7 @@ const createImageNode = () => {
 const addImage = () => {
   const newImage = createImageNode();
   mountNode.appendChild(newImage);
+  registerImage(newImage);
 }
 
 const addImageButton = document.getElementById('add-image');
