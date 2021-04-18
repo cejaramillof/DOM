@@ -62,3 +62,34 @@ window
     appNode.className = 'mt-10 grid grid-cols-2 gap-2';
     appNode.append(...items);
   });
+
+
+
+// Lazy loading
+const mountNode = document.getElementById('images');
+
+const maximum = 122;
+const minimum = 1;
+const random = () => Math.floor(Math.random() * (maximum - minimum)) + minimum;
+
+const createImageNode = () => {
+  const container = document.createElement('picture');
+  container.className = "p-4";
+
+  const image = document.createElement('img');
+  image.className = "mx-auto";
+  image.width = "320";
+  image.src = `https://randomfox.ca/images/${random()}.jpg`;
+
+  container.appendChild(image);
+  return container;
+}
+
+const addImage = () => {
+  const newImage = createImageNode();
+  mountNode.appendChild(newImage);
+}
+
+const addImageButton = document.getElementById('add-image');
+addImageButton.addEventListener('click', addImage);
+
