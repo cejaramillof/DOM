@@ -123,6 +123,36 @@ Delegar a un nodo, usualmente padre que se encargue de manejar todos los eventos
 Used by (React, Angular, Svelte)
 
 
+## jQuery
+Surgió para hacer más fácil la interacción con el DOM, nació como un proyecto para unificar todos los navegadores bajo 1 sóla API.
+
+## JSX
+hace parecer que escribimos html en js (en react)
+
+## Hyperscript
+Create nodes, add properties, add children nodes. Is similar to JSX (React.createElement())
+
+```javascript
+npm install hyperscript
+
+import h from 'hyperscript';
+
+// const image = document.createElement('img');
+// image.className = "mx-auto rounded-md bg-gray-300";
+// image.width = 320;
+// image.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
+const image = h('img.mx-auto.rounded-md.bg-gray-300', {
+    width: '320',
+    'data-src': `https://randomfox.ca/images/${random()}.jpg`
+  },
+);
+
+// const container = document.createElement('picture');
+// container.className = "p-4";
+// container.appendChild(image);
+const container = h('picture.p-4', image);
+```
+
 
 # Snowpack Tailwind
 
