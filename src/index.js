@@ -1,4 +1,5 @@
 import { registerImage } from './lazy';
+import { createImageNodes } from "./lazy/utils";
 
 console.log('Happy hacking :)');
 
@@ -62,33 +63,23 @@ window
 
 
 // Lazy loading
-const mountNode = document.getElementById('images');
 
-const maximum = 122;
-const minimum = 1;
-const random = () => Math.floor(Math.random() * (maximum - minimum)) + minimum;
+// load all images in current web
+const allImages = document.querySelectorAll("img[data-src]");
+allImages.forEach(registerImage);
 
-const createImageNode = () => {
-  const container = document.createElement('picture');
-  container.className = "p-4";
+// add new images to lazy loading
+const imageContainer = document.querySelector("#images");
+const button = document.querySelector("button[type='submit']");
+button.addEventListener("click", () => {
+  const [node, image] = createImageNodes();
+  registerImage(image);
+  imageContainer.append(node);
+});
 
-  const image = document.createElement('img');
-  image.className = "mx-auto";
-  image.width = "320";
-
-  // dataset to comunicate info between html and js
-  image.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
-
-  container.appendChild(image);
-  return container;
-}
-
-const addImage = () => {
-  const newImage = createImageNode();
-  mountNode.appendChild(newImage);
-  registerImage(newImage);
-}
-
-const addImageButton = document.getElementById('add-image');
-addImageButton.addEventListener('click', addImage);
+// Reset
+const clean = document.querySelector("button[type='reset']");
+clean.addEventListener("click", () => {
+  imageContainer.innerHTML = "";
+});
 
