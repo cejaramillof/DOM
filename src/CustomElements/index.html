@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CustomElements</title>
+</head>
+<body>
+  <my-element></my-element>
+  <p>test</p>
+  <template>
+    <h2>Hellow World! not rendered</h2>
+    <div>
+       <p>Hello World</p>
+    </div>
+  </template>
+  <template-element>
+    <span slot="title">I'm Title</span>
+    <span slot="paragraph">I'm Paragraph</span>
+    If not use content Slot '<slot></slot>' This is text will be in the light DOM
+  </template-element>
+  <script type="module" src="./my-element.js"></script>
+  <script type="module" src="./template-element.js"></script>
+</body>
+</html>
