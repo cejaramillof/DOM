@@ -8,6 +8,10 @@ class templateElement extends HTMLElement {
     // when is 'closed' can't see internal content, or intectact with it.
 
     // Shadow DOM, Light DOM, Shadow ROOT (from this node to inside is ShadowDOM )
+
+    this.title = this.getAttribute('title');
+    this.paragraph = this.getAttribute('paragraph');
+    this.img = this.getAttribute('img');
   }
 
   // new custom method to generate templates tag
@@ -18,10 +22,15 @@ class templateElement extends HTMLElement {
         <h2>
           Hello world! From template!
           <slot name="title"></slot>
+          <br/>
+          ${this.title}
         </h2>
         <div>
+          <img src="${this.img}" />
           <p>
             <slot name="paragraph"></slot>
+            <br/>
+            ${this.paragraph}
           </p>
           <p>
             <slot></slot>
