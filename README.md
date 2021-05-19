@@ -1,4 +1,5 @@
 # DOM
+// video 13
 
 ## Critical Rendering Path (4 ó 5 steps)
 DOM -> CSSOM -> (JS) -> Render Tree -> Layout -> Paint
